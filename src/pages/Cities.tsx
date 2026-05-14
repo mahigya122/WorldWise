@@ -1,20 +1,37 @@
 import {useAppSelector} from "../hooks/reduxHooks";
+import { useAppDispatch } from "../hooks/reduxHooks";
+import { setSelectedEntry } from "../redux/selectedEntrySlice";
 
 const Cities = () => {
     const entries = useAppSelector((state) => state.journal.entries);
 
+    const dispatch = useAppDispatch();
+
+
   return (
-    <div className="text-white p-4">
-      <h1 className="text-2xl font-bold mb-4">Visited Cities</h1>
+    <div className="text-white">
+      <h1 className="text-lg font-bold mb-3">Visited Cities</h1>
 
-      <div className = "flex flex-col gap-4">
+      <div className = "flex flex-col gap-3">
         {entries.map((entry) => (
-          <div key={entry.id} className="bg-gray-800 p-4 rounded shadow">
+          
+          <div key={entry.id} 
 
-            <h2 className="text-xl font-bold">{entry.city}</h2>
-            <p>{entry.country}</p>
+          onClick={() =>
+              dispatch(
+                setSelectedEntry({
+                  lat: entry.lat,
+                  lng: entry.lng,
+                })
+              )
+            }
+          
+          className="bg-zinc-800 p-3 rounded shadow cursor-pointer hover:bg-zinc-700">
 
-            <p className="text-gray-300 mt-2">{entry.note}</p>
+            <h2 className="text-sm font-bold">{entry.city}</h2>
+            <p className="text-xs text-gray-400">{entry.country}</p>
+
+            <p className="text-gray-300 mt-1 text-xs">{entry.note}</p>
           </div>
         ))}
       </div>

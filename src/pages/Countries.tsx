@@ -8,8 +8,8 @@ const Countries = () => {
     ];
 
     return (
-    <div className="text-white p-4 w-[350px]">
-      <h1 className="text-2xl font-bold mb-4">
+    <div className="text-white">
+      <h1 className="text-lg font-bold mb-3">
         Countries
       </h1>
 

@@ -1,16 +1,23 @@
 import { useAppSelector, useAppDispatch } from "../hooks/reduxHooks";
-import { NavLink, useNavigate } from "react-router-dom";
+import { NavLink, useNavigate, useLocation } from "react-router-dom";
 import { logout } from "../redux/authSlice";
+import JournalForm from "./JournalForm";
+import Cities from "../pages/Cities";
+import Countries from "../pages/Countries";
 
 const Sidebar = () => {
-    const city = useAppSelector((state) => state.city);
     const dispatch = useAppDispatch();
     const navigate = useNavigate();
+    const location = useLocation();
 
     const handleLogout = () => {
-        dispatch(logout());
+         dispatch(logout());
         navigate("/");
     };
+
+    // Determine which content to show based on route
+    const showCities = location.pathname === "/dashboard/cities";
+    const showCountries = location.pathname === "/dashboard/countries";
 
     return(
         <div className = " w-[350px] h-full bg-zinc-900 text-white p-5 flex flex-col gap-4 overflow-y-auto">
@@ -37,23 +44,18 @@ const Sidebar = () => {
         </NavLink>
       </div>
 
-    
-
-       <div className="bg-zinc-800 p-4 rounded-lg">
-        <h2 className="text-lg font-semibold mb-2">
-          Selected Location
-        </h2>
-
-        <p>
-          <span className="text-gray-400">City:</span>{" "}
-          {city.city || "click on map"}
-        </p>
-
-        <p>
-          <span className="text-gray-400">Country:</span>{" "}
-          {city.country || "click on map"}
-        </p>
+      <div className="flex-1 overflow-y-auto">
+        {showCities && <Cities />}
+        {showCountries && <Countries />}
+        {!showCities && !showCountries && <JournalForm />}
       </div>
+
+      <button
+        onClick={handleLogout}
+        className="mt-auto bg-red-500 hover:bg-red-600 text-white py-2 px-4 rounded w-full"
+      >
+        Logout
+      </button>
     </div>
   );
 };

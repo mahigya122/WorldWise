@@ -27,7 +27,10 @@ const journalSlice = createSlice({
   name: "journal",
   initialState,
   reducers: {
-    addEntry: (state, action: PayloadAction<JournalEntry>) => {
+    addEntry: ( 
+      state, 
+      action: PayloadAction<JournalEntry>
+    ) => {
       console.log("Adding entry:", action.payload); 
       state.entries.push(action.payload);
 
@@ -36,8 +39,32 @@ const journalSlice = createSlice({
         JSON.stringify(state.entries)
       )
     },
+    updateEntry: (
+      state,
+      action: PayloadAction<JournalEntry>
+    ) => {
+      const updatedEntry = action.payload;
+
+      const index = state.entries.findIndex(
+
+        (entry) =>
+          entry.id === updatedEntry.id
+      );
+      if (index !== -1) {
+        state.entries[index] = updatedEntry;
+
+       localStorage.setItem(
+          "journal",
+          JSON.stringify(state.entries)
+        );
+      }
+    },
   },
 });
 
-export const { addEntry } = journalSlice.actions;
-export default journalSlice.reducer;
+export const {
+  addEntry,
+  updateEntry,
+} = journalSlice.actions;
+
+export default journalSlice.reducer; 

@@ -1,6 +1,5 @@
 import { useMapEvents } from "react-leaflet";
 import type { LeafletMouseEvent } from "leaflet";
-import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { useAppDispatch } from "../hooks/reduxHooks";
 import { setCity } from "../redux/citySlice";
