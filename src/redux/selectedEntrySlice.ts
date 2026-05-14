@@ -7,8 +7,8 @@ type SelectedEntryState = {
 };
 
 const initialState: SelectedEntryState = {
-  lat: 20,
-  lng: 0,
+  lat: 28.3949,
+  lng: 84.124,
 };
 
 const selectedEntrySlice = createSlice({

@@ -1,4 +1,4 @@
-import { useAppSelector, useAppDispatch } from "../hooks/reduxHooks";
+import { useAppDispatch } from "../hooks/reduxHooks";
 import { NavLink, useNavigate, useLocation } from "react-router-dom";
 import { logout } from "../redux/authSlice";
 import JournalForm from "./JournalForm";

@@ -23,8 +23,8 @@ const selectedEntry = useAppSelector(
 
   return (
     <MapContainer
-      center={[20, 0]}
-      zoom={2}
+      center={[28.3949, 84.124]}
+      zoom={7}
       className="h-full w-full"
     >
       <FlyToLocation

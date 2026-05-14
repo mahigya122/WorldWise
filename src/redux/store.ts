@@ -2,7 +2,7 @@ import { configureStore} from "@reduxjs/toolkit";
 
 import authReducer from "./authSlice";
 import cityReducer from "./citySlice";
-import journalReducer from "./journalSlice";
+import journalReducer from "./entriesSlice";
 import selectedEntryReducer from "./selectedEntrySlice";
 
 export const store = configureStore({

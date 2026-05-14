@@ -16,7 +16,7 @@ const FlyToLocation = ({
 
   useEffect(() => {
 
-    map.flyTo([lat, lng], 8);
+    map.flyTo([lat, lng], 7);
 
   }, [lat, lng, map]);
 
