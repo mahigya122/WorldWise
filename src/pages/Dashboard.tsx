@@ -1,5 +1,6 @@
 import MapView from "../components/MapView";
 import Sidebar from "../components/Sidebar";
+import { Outlet } from "react-router-dom";
 
 const Dashboard = () => {
  return(
@@ -8,6 +9,7 @@ const Dashboard = () => {
     
     <div className = "flex-1 relative">
       <MapView/>
+      <Outlet />
     </div>
   </div>  
  );
