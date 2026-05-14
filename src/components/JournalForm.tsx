@@ -5,6 +5,7 @@ import { useAppDispatch, useAppSelector} from "../hooks/reduxHooks";
 import { addEntry } from "../redux/entriesSlice";
 
 const JournalForm = () => {
+
   const [params] = useSearchParams();
   const navigate = useNavigate();
 
@@ -17,10 +18,13 @@ const JournalForm = () => {
    
   const dispatch = useAppDispatch();
 
-  const [note, setNote] = useState("");
+  const [title, setTitle] = useState("");
+  const [story, setStory] = useState("");
+  const [highlightText, setHighlightText] = useState("");
+  const [feeling, setFeeling] = useState("");
 
   const handleSave = () => {
-    console.log("calling", note);
+    
     dispatch(
       addEntry({
         id: crypto.randomUUID(),
@@ -28,25 +32,35 @@ const JournalForm = () => {
         country: cityData.country,
         lat: lat ? parseFloat(lat) : 0,
         lng: lng ? parseFloat(lng) : 0,
-        note: note,
         date: new Date().toLocaleDateString(),
+
+        title,
+        story,
+
+        highlights: highlightText
+        .split(",")
+        .map((h) => h.trim())
+        .filter(Boolean),
+
+        feeling,
+         mood: "",
+
       })
     );
       
     navigate("/dashboard/cities");
   };
 
-  const handleCancel = () => {
-    navigate("/dashboard/cities");
-  };
-
   return (
     <div className="p-4 bg-zinc-800 text-white rounded-lg shadow-lg max-w-md">
-      <h2 className="text-xl font-bold mb-4">Add Journal Entry</h2>
+      <h2 className="text-xl font-bold mb-4"> Travel Journal</h2>
 
-      <div className="bg-zinc-700 p-3 rounded mb-4">
-        <h3 className="text-sm font-semibold mb-2">Selected Location</h3>
-        
+       <label className="block text-sm font-semibold mb-1">
+          Selected Location
+        </label>
+
+      <div className="bg-zinc-700 p-3 rounded mb-4 text-sm">   
+
         <p className="mb-1">
           <span className="text-gray-400">City:</span> <span className="text-white">{cityData.city || "Unknown"}</span>
         </p>
@@ -64,31 +78,66 @@ const JournalForm = () => {
         </p>
       </div>
 
-      <div className="mb-4">
-        <label className="block text-sm font-semibold mb-2">Your Journal Entry</label>
-        <textarea 
-          value={note}
-          onChange={(e) => setNote(e.target.value)}
-          className="w-full p-2 border border-zinc-600 rounded bg-zinc-700 text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500"
-          placeholder="Write your journal entry here..."
-          rows={6}
-        />
+
+      <div className="mb-3">
+      <label className="block text-sm font-semibold mb-1">
+       Title
+      </label>
+
+      <input
+        value={title}
+        onChange={(e) => setTitle(e.target.value)}
+        placeholder="Trip title (e.g. Summer in Nepal)"
+        className="w-full p-2 mb-2 bg-zinc-700 rounded"
+      />
       </div>
 
-      <div className="flex gap-2">
-        <button
-          onClick={handleSave}
-          className="flex-1 bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded font-semibold"
-        >
-          Save Entry
-        </button>
-        <button
-          onClick={handleCancel}
-          className="flex-1 bg-gray-600 hover:bg-gray-700 text-white px-4 py-2 rounded font-semibold"
-        >
-          Cancel
-        </button>
+      <div className="mb-3">
+      <label className="block text-sm font-semibold mb-1">
+        Journal
+      </label>
+
+      <textarea
+        value={story}
+        onChange={(e) => setStory(e.target.value)}
+        placeholder="Tell your travel story..."
+        className="w-full p-2 mb-2 bg-zinc-700 rounded"
+        rows={4}
+      />
       </div>
+
+      <div className="mb-3">
+      <label className="block text-sm font-semibold mb-1">
+       Highlights
+      </label>
+
+      <input
+        value={highlightText}
+        onChange={(e) => setHighlightText(e.target.value)}
+        placeholder="Highlights (comma separated)"
+        className="w-full p-2 mb-2 bg-zinc-700 rounded"
+      />
+      </div>
+
+      <div className="mb-3">
+      <label className="block text-sm font-semibold mb-1">
+       Feeling
+      </label>
+
+      <input
+        value={feeling}
+        onChange={(e) => setFeeling(e.target.value)}
+        placeholder="How did you feel?"
+        className="w-full p-2 mb-4 bg-zinc-700 rounded"
+      />
+      </div>
+
+      <button
+        onClick={handleSave}
+        className="w-full bg-blue-500 p-2 rounded"
+      >
+        Save Journal
+      </button>
     </div>
   );
 };

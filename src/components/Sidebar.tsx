@@ -4,6 +4,7 @@ import { logout } from "../redux/authSlice";
 import JournalForm from "./JournalForm";
 import Cities from "../pages/Cities";
 import Countries from "../pages/Countries";
+import Journal from "../pages/Journal";
 
 const Sidebar = () => {
     const dispatch = useAppDispatch();
@@ -18,6 +19,7 @@ const Sidebar = () => {
     // Determine which content to show based on route
     const showCities = location.pathname === "/dashboard/cities";
     const showCountries = location.pathname === "/dashboard/countries";
+    const showJournals = location.pathname === "/dashboard/journals";
 
     return(
         <div className = " w-[350px] h-full bg-zinc-900 text-white p-5 flex flex-col gap-4 overflow-y-auto">
@@ -42,12 +44,23 @@ const Sidebar = () => {
         >
           Countries
         </NavLink>
+
+        <NavLink
+          to="/dashboard/journals"
+          className={({ isActive }) =>
+            isActive ? "text-blue-400" : "text-gray-400"
+          }
+        >
+          Journals
+        </NavLink>
+
       </div>
 
       <div className="flex-1 overflow-y-auto">
         {showCities && <Cities />}
         {showCountries && <Countries />}
-        {!showCities && !showCountries && <JournalForm />}
+        {showJournals && <Journal />}
+        {!showCities && !showCountries && !showJournals && <JournalForm />}
       </div>
 
       <button

@@ -15,6 +15,7 @@ import ProtectedRoute from "./pages/ProtectedRoute";
 
 import Cities from "./pages/Cities";
 import Countries from "./pages/Countries";
+import Journal from "./pages/Journal";
 
 import JournalForm from "./components/JournalForm";
 
@@ -39,6 +40,7 @@ const router = createBrowserRouter([
          children : [
         { path: "cities", element: <Cities /> },
         { path: "countries", element: <Countries /> },
+        { path: "journals", element: <Journal /> },
         { path: "form", element: <JournalForm /> },
         ],  
        

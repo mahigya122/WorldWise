@@ -43,9 +43,8 @@ const selectedEntry = useAppSelector(
         >
           <Popup>
             <div>
-              <h2>{entry.city}</h2>
-
-              <p>{entry.note}</p>
+              <h2>{entry.city}</h2>             
+           
             </div>
           </Popup>
         </Marker>

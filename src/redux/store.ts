@@ -11,7 +11,6 @@ export const store = configureStore({
         city: cityReducer,
         journal: journalReducer,
         selectedEntry: selectedEntryReducer,
-
     },
 });
 
