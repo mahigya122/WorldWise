@@ -1,7 +1,67 @@
 @import "tailwindcss";
 
+:root {
+  --dreamy-blue: #6366f1;
+  --dreamy-purple: #a855f7;
+  --dreamy-pink: #ec4899;
+}
 
-body{
-    background-color: #f8f4eb;
-    
+body {
+    background-color: #09090b;
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    color: white;
+}
+
+/* Custom Dreamy Scrollbar */
+::-webkit-scrollbar {
+  width: 5px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(to bottom, var(--dreamy-blue), var(--dreamy-purple));
+  border-radius: 10px;
+}
+
+/* Glassmorphism Utility - Increased opacity for better text contrast */
+.glass {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.glass-dark {
+  background: rgba(10, 10, 12, 0.8);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Aurora Glows - Sharper text */
+.aurora-text {
+  background: linear-gradient(to right, #a5b4fc, #d8b4fe, #fda4af);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  filter: drop-shadow(0 0 1px rgba(255,255,255,0.1));
+}
+
+.dreamy-shadow {
+  box-shadow: 0 0 20px rgba(99, 102, 241, 0.1);
+}
+
+.dreamy-shadow-hover:hover {
+  box-shadow: 0 0 30px rgba(168, 85, 247, 0.2);
+}
+
+@keyframes pulse-soft {
+  0%, 100% { opacity: 0.8; }
+  50% { opacity: 0.5; }
+}
+
+.animate-pulse-soft {
+  animation: pulse-soft 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
 }

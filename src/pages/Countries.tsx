@@ -43,20 +43,25 @@ const Countries = () => {
 
   return (
     <div className="text-white flex flex-col min-h-0 h-full">
-      <div className="sticky top-0 bg-zinc-900 pb-4 z-10 shrink-0">
-        <h1 className="text-lg font-bold mb-3">Countries Explored</h1>
-        <input
-          type="text"
-          placeholder="Search countries..."
-          value={searchTerm}
-          onChange={(e) => setSearchTerm(e.target.value)}
-          className="w-full p-2 bg-zinc-800 border border-zinc-700 rounded text-sm focus:outline-none focus:ring-1 focus:ring-blue-500"
-        />
+      <div className="sticky top-0 bg-[#09090b]/80 backdrop-blur-md pb-6 z-10 shrink-0">
+        <h1 className="text-xl font-black mb-4 tracking-tighter uppercase text-white">Countries Explored</h1>
+        <div className="relative group">
+          <input
+            type="text"
+            placeholder="Search nations..."
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+            className="w-full p-3 pl-10 bg-white/10 border border-white/20 rounded-2xl text-sm focus:outline-none focus:ring-1 focus:ring-green-500 transition-all placeholder:text-gray-400 text-white"
+          />
+          <span className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 group-focus-within:text-green-500 transition-colors text-lg">
+            🗺️
+          </span>
+        </div>
       </div>
 
-      <div className="flex-1 overflow-y-auto pr-1">
+      <div className="flex-1 overflow-y-auto pr-2 space-y-4">
         {filteredCountries.length === 0 ? (
-          <p className="text-gray-500 text-center py-10">No countries found.</p>
+          <p className="text-gray-400 text-center py-20 italic font-medium">No frontiers crossed yet...</p>
         ) : (
           filteredCountries.map((country) => (
             <div
@@ -64,22 +69,25 @@ const Countries = () => {
               onClick={() => {
                 dispatch(setSelectedEntry({ lat: country.lat, lng: country.lng }));
               }}
-              className="group relative bg-zinc-800 p-4 rounded-xl border border-zinc-700 hover:border-green-500/50 hover:bg-zinc-700/50 transition-all cursor-pointer overflow-hidden"
+              className="group relative glass p-5 rounded-[2rem] border border-white/10 hover:border-green-500/40 hover:bg-white/15 transition-all duration-500 cursor-pointer overflow-hidden dreamy-shadow-hover"
             >
-              <div className="flex justify-between items-center pr-6">
-                <div className="flex items-center gap-3 min-w-0">
-                  <div className="shrink-0 w-10 h-10 bg-green-500/10 rounded-lg flex items-center justify-center text-green-400 font-bold border border-green-500/20">
+              {/* Background Glow */}
+              <div className="absolute top-0 right-0 w-24 h-24 bg-green-500/10 blur-2xl rounded-full group-hover:bg-green-500/20 transition-all duration-700" />
+
+              <div className="flex justify-between items-center pr-6 relative">
+                <div className="flex items-center gap-4 min-w-0">
+                  <div className="shrink-0 w-12 h-12 bg-green-500/10 rounded-2xl flex items-center justify-center text-green-400 font-black border border-green-500/20 group-hover:rotate-12 transition-transform duration-500">
                     {country.name.substring(0, 2).toUpperCase()}
                   </div>
-                  <h2 className="text-base font-bold group-hover:text-green-400 transition-colors truncate">
+                  <h2 className="text-lg font-black group-hover:text-green-300 transition-colors truncate tracking-tight text-white">
                     {country.name}
                   </h2>
                 </div>
                 <div className="text-right shrink-0">
-                  <span className="block text-lg font-black text-green-500/50 group-hover:text-green-500 transition-colors">
+                  <span className="block text-3xl font-black text-white/20 group-hover:text-green-500/30 transition-colors leading-none">
                     {String(country.count).padStart(2, "0")}
                   </span>
-                  <span className="text-[10px] text-gray-500 uppercase font-bold tracking-tighter">
+                  <span className="text-[8px] text-gray-300 uppercase font-black tracking-[0.2em]">
                     Journals
                   </span>
                 </div>
@@ -88,13 +96,13 @@ const Countries = () => {
               <button
                 onClick={(e) => {
                   e.stopPropagation();
-                  if (confirm(`Delete all entries for ${country.name}?`)) {
+                  if (confirm(`Remove all stories from ${country.name}?`)) {
                     entries
                       .filter((e) => e.country === country.name)
                       .forEach((e) => dispatch(deleteEntry(e.id)));
                   }
                 }}
-                className="absolute top-2 right-2 bg-zinc-900/80 text-gray-400 w-6 h-6 rounded-md flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all hover:text-red-400 hover:bg-zinc-900 shadow-sm"
+                className="absolute top-4 right-4 bg-white/5 text-gray-400 w-8 h-8 rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all hover:text-red-400 hover:bg-white/10"
               >
                 ✕
               </button>

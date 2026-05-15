@@ -24,8 +24,8 @@ const Product = () => {
         <div className="relative group">
           <div className="absolute -inset-2 bg-blue-500 rounded-2xl blur opacity-20 group-hover:opacity-40 transition duration-1000"></div>
           <img
-            src="https://images.unsplash.com/photo-1518770660439-4636190af475"
-            alt="product"
+            src="https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?auto=format&fit=crop&q=80&w=1200"
+            alt="Beautiful Mountain Landscape"
             className="relative w-full h-[500px] object-cover rounded-2xl shadow-2xl border border-white/10"
           />
         </div>
