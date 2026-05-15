@@ -5,6 +5,7 @@ import {
   Popup,
 } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
+import { Link } from "react-router-dom";
 
 import FlyToLocation from "./FlyToLocation";
 
@@ -42,10 +43,14 @@ const selectedEntry = useAppSelector(
           position={[entry.lat, entry.lng]}
         >
           <Popup>
-            <div>
-              <h2>{entry.city}</h2>
-
-              <p>{entry.note}</p>
+            <div className="text-black">
+              <h2 className="font-bold">{entry.city}</h2>
+              <Link
+                to={`/dashboard/journals/${entry.id}`}
+                className="text-blue-600 underline text-xs"
+              >
+                View Journal
+              </Link>
             </div>
           </Popup>
         </Marker>
