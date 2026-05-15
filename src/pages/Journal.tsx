@@ -12,7 +12,7 @@ const Journal = () => {
   const [sortBy, setSortBy] = useState<"date" | "city">("date");
 
   const filteredAndSorted = useMemo(() => {
-    let result = entries.filter(
+    const result = entries.filter(
       (e) =>
         e.city.toLowerCase().includes(searchTerm.toLowerCase()) ||
         e.title.toLowerCase().includes(searchTerm.toLowerCase()) ||

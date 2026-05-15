@@ -7,7 +7,7 @@ const Sidebar = () => {
     const navigate = useNavigate();
 
     return(
-        <div className = "w-[380px] h-full bg-zinc-950/80 backdrop-blur-2xl border-r border-white/10 p-6 flex flex-col gap-8 overflow-hidden relative">
+        <div className="w-full md:w-[420px] h-screen md:h-full bg-zinc-950/80 backdrop-blur-2xl border-r border-white/10 p-4 md:p-6 flex flex-col gap-6 md:gap-8 overflow-hidden relative">
             {/* Background Aurora Effect */}
             <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[30%] bg-blue-500/10 blur-[100px] rounded-full animate-pulse-soft" />
             <div className="absolute bottom-[-10%] right-[-10%] w-[40%] h-[30%] bg-purple-500/10 blur-[100px] rounded-full animate-pulse-soft" />

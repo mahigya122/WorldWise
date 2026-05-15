@@ -8,7 +8,7 @@ function Error() {
   if (isRouteErrorResponse(error)) {
     errorMessage = error.statusText || error.data;
   } else if (error instanceof Error) {
-    errorMessage = error.message;
+    errorMessage = (error as Error).message;
   }
 
   return (

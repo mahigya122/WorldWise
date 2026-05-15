@@ -7,7 +7,6 @@ const AppLayout = () => {
   const location = useLocation();
   const isLoading = navigation.state === "loading";
   const isDashboard = location.pathname.startsWith("/dashboard");
-  const isHome = location.pathname === "/";
   
   return (
     <div className="min-h-screen flex flex-col">
