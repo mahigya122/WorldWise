@@ -1,27 +1,32 @@
-
 const Product = () => {
   return (
-    <section className="min-h-screen px-6 py-16 bg-white">
-      <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-12 items-center">
+    <section className="min-h-[calc(100vh-80px)] px-6 py-20 bg-zinc-900 text-white">
+      <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-20 items-center">
         
         <div>
-          <h1 className="text-5xl font-bold text-zinc-900 mb-6">
-            Our Products
+          <h1 className="text-5xl font-black mb-8 tracking-tighter uppercase leading-tight">
+            Track your <br/>
+            <span className="text-blue-500 underline decoration-4 underline-offset-8">Adventures</span>
           </h1>
 
-          <p className="text-lg text-zinc-600 leading-8">
-            We build modern digital products focused on performance,
-            scalability, and user experience. Our platform helps teams
-            manage workflows efficiently and improve productivity across
-            projects.
+          <p className="text-lg text-gray-400 leading-8 mb-6">
+            WorldWise is designed for the modern traveler. We believe that every city, 
+            every street corner, and every sunset has a story worth remembering.
+          </p>
+
+          <p className="text-lg text-gray-400 leading-8">
+            Our platform provides an interactive world map where you can pin your 
+            locations, write detailed journal entries, and attach your feelings to 
+            each specific spot on the globe.
           </p>
         </div>
 
-        <div>
+        <div className="relative group">
+          <div className="absolute -inset-2 bg-blue-500 rounded-2xl blur opacity-20 group-hover:opacity-40 transition duration-1000"></div>
           <img
             src="https://images.unsplash.com/photo-1518770660439-4636190af475"
             alt="product"
-            className="w-full h-[450px] object-cover rounded-2xl shadow-lg"
+            className="relative w-full h-[500px] object-cover rounded-2xl shadow-2xl border border-white/10"
           />
         </div>
       </div>

@@ -4,6 +4,8 @@ import { useState } from "react";
 import { useAppDispatch, useAppSelector} from "../hooks/reduxHooks";
 import { addEntry } from "../redux/entriesSlice";
 
+import { analyzeJournal } from "../utils/ai";
+
 const JournalForm = () => {
 
   const [params] = useSearchParams();
@@ -23,7 +25,21 @@ const JournalForm = () => {
   const [highlightText, setHighlightText] = useState("");
   const [feeling, setFeeling] = useState("");
 
-  const handleSave = () => {
+  const handleSave = async () => {
+    // 1. Call AI
+      const aiResponse = await analyzeJournal(story);
+       console.log("AI RAW:", aiResponse);
+
+       // 2. Extract Mood + Summary from text
+  const moodMatch = aiResponse.match(/Mood:\s*(.*)/);
+  const summaryMatch = aiResponse.match(/Summary:\s*(.*)/);
+
+  const mood = moodMatch?.[1] || "Unknown";
+  const summary = summaryMatch?.[1] || "No summary";
+
+  console.log("Mood:", mood);
+  console.log("Summary:", summary);
+
     
     dispatch(
       addEntry({
@@ -43,12 +59,14 @@ const JournalForm = () => {
         .filter(Boolean),
 
         feeling,
-         mood: "",
+
+         mood,
+         summary,
 
       })
     );
       
-    navigate("/dashboard/cities");
+    navigate("/dashboard/journals");   
   };
 
   return (

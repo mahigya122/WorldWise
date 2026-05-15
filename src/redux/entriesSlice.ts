@@ -13,6 +13,7 @@ type JournalEntry = {
   highlights: string[];
   feeling: string;
   mood: string;
+  summary: string;
 };
 
 type EntriesState = {
@@ -53,9 +54,8 @@ const EntriesSlice = createSlice({
         JSON.stringify(state.entries)
       );
     },
-    },
   },
-);
+});
 
 export const {
   addEntry,

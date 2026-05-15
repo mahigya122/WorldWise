@@ -7,12 +7,13 @@ const AppLayout = () => {
   const location = useLocation();
   const isLoading = navigation.state === "loading";
   const isDashboard = location.pathname.startsWith("/dashboard");
+  const isHome = location.pathname === "/";
   
   return (
-    <div>
+    <div className="min-h-screen flex flex-col">
       {isLoading && <Loader />}
       {!isDashboard && <Navbar />}
-      <main>
+      <main className="flex-1">
         <Outlet />
       </main>
     </div>

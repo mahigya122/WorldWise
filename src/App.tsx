@@ -1,4 +1,4 @@
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { createBrowserRouter, RouterProvider, Navigate } from "react-router-dom";
 import "./App.css";
 
 import AppLayout from "./layout/AppLayout";
@@ -39,6 +39,7 @@ const router = createBrowserRouter([
         ),
 
          children : [
+        { index: true, element: <Navigate to="cities" replace /> },
         { path: "cities", element: <Cities /> },
         { path: "countries", element: <Countries /> },
         { path: "journals/:id", element: <JournalDetail /> }, 

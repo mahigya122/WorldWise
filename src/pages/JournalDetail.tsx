@@ -56,6 +56,19 @@ const JournalDetail = () => {
           {entry.highlights?.join(", ")}
         </p>
       </div>
+      
+{/* this is for insite card */}
+  <div className="bg-zinc-700 p-3 rounded mt-4">
+  <h3 className="font-bold mb-2">AI Insights</h3>
+
+  <p>
+    <span className="text-gray-400">Mood:</span> {entry.mood}
+  </p>
+
+  <p>
+    <span className="text-gray-400">Summary:</span> {entry.summary}
+  </p>
+</div>
     </div>
   );
 };

@@ -9,7 +9,6 @@ const Dashboard = () => {
     
     <div className = "flex-1 relative">
       <MapView/>
-      <Outlet />
     </div>
   </div>  
  );
